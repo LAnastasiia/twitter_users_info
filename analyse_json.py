@@ -2,6 +2,8 @@ import urllib.request, urllib.parse, urllib.error
 import twurl
 import json
 import ssl
+import collections
+
 
 # https://apps.twitter.com/
 # Create App and get the four strings, put them in hidden.py
@@ -35,6 +37,31 @@ def get_dict_from_json(acct, num_of_users):
     return js
 
 
+def get_val(diction, key):
+    """
+    This function processes a deep search entered key and returnes it's value.
+    get_val({'users':[{'asd':{123}, 'info':{'loc': 'YES'}}], 'next':1}, 'loc')
+    'YES'
+    """
+    if type(diction) == dict:
+        for el in diction:
+            if el == key:
+                return diction[el]
+            elif isinstance(diction[el], collections.Iterable) and type(diction[el]) != str:
+                val = get_val(diction[el], key)
+                if val:
+                    return val
+    elif isinstance(diction, collections.Iterable) and type(diction) != str:
+        for el in diction:
+            if el == key:
+                return el
+            elif isinstance(el, collections.Iterable) and type(el) != str:
+                val = get_val(el, key)
+                if val:
+                    return val
+    return False
+
+
 def extract_info(info_key, json_dict):
     """
     (str, dict) -> (list / int / str)
@@ -58,7 +85,9 @@ try:
     num_of_users = int(input("Enter amount of friends, which You want to get \
 information about: "))
     assert (len(acct))
-    get_dict_from_json(acct, num_of_users)
+    js_diction = get_dict_from_json(acct, num_of_users)
+    res_value = get_val(js_diction, 'lang')
+    print(res_value)
 except ValueError:
     print("You entered wrong value(s). Please, check the input and try again.")
 except AssertionError:
