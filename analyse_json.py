@@ -1,12 +1,11 @@
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import twurl
 import json
 import ssl
 import collections
 
-
-# https://apps.twitter.com/
-# Create App and get the four strings, put them in hidden.py
 
 TWITTER_URL = 'https://api.twitter.com/1.1/friends/list.json'
 
@@ -15,9 +14,10 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
+
 def get_dict_from_json(acct, num_of_users):
     """
-    (str, int)
+    (str, int) -> (dict)
     This function gets json file about Twitter friends list from Twitter URL.
     Returned json file contains info about certain amount (given by user) of
     friends of cetain account (with given account-name).
@@ -26,7 +26,7 @@ def get_dict_from_json(acct, num_of_users):
     if (len(acct) < 1):
         return ''
     url = twurl.augment(TWITTER_URL,
-                        {'screen_name': acct, 'count': num_of_users})
+                        {'screen_name': acct, 'count': '10'})
     connection = urllib.request.urlopen(url, context=ctx)
     try:
         data = connection.read().decode()
@@ -39,56 +39,68 @@ def get_dict_from_json(acct, num_of_users):
 
 def get_val(diction, key):
     """
+    (dict, str) -> (collection / str)
     This function processes a deep search entered key and returnes it's value.
-    get_val({'users':[{'asd':{123}, 'info':{'loc': 'YES'}}], 'next':1}, 'loc')
-    'YES'
+
+    >>>get_val({'users':[{'asd':{123}, 'info':{'loc': 'YES'}}]}, 'loc')
+    YES
+    >>>get_val({'users':[{'asd':{123}, 'info':{'loc': 'YES'}}]}, 'locti')
+
     """
     if type(diction) == dict:
         for el in diction:
             if el == key:
-                return diction[el]
-            elif isinstance(diction[el], collections.Iterable) and type(diction[el]) != str:
+                val = diction[el]
+                del diction[el]
+                return val
+            elif (isinstance(diction[el], collections.Iterable) and
+                    type(diction[el]) != str):
                 val = get_val(diction[el], key)
                 if val:
                     return val
     elif isinstance(diction, collections.Iterable) and type(diction) != str:
         for el in diction:
             if el == key:
-                return el
+                val = el
+                diction.remove(el)
+                return val
             elif isinstance(el, collections.Iterable) and type(el) != str:
                 val = get_val(el, key)
                 if val:
                     return val
-    return False
+    return ''
 
 
-def extract_info(info_key, json_dict):
-    """
-    (str, dict) -> (list / int / str)
-    This function gets certain information from js_dict, by given key
-    (info_key parameter).
-    """
+
+def main():
     try:
-        assert(len(info_key) > 0)
-        if info_key in json_dict:
-            print(json_dict[info_key])
-            return(json_dict[info_key])
-        else:
-            print("Entered info parameter is not available.")
-            return ''
-    except AssertionError:
-        print("You didn't enter information key.Please try again.")
-
-
-try:
-    acct = input('Enter Twitter Account: ')
-    num_of_users = int(input("Enter amount of friends, which You want to get \
+        # Get values from user.
+        acct = input('Enter Twitter Account: ')
+        num_of_users = int(input("Enter amount of friends, which You want to get \
 information about: "))
-    assert (len(acct))
-    js_diction = get_dict_from_json(acct, num_of_users)
-    res_value = get_val(js_diction, 'lang')
-    print(res_value)
-except ValueError:
-    print("You entered wrong value(s). Please, check the input and try again.")
-except AssertionError:
-    print()
+        key = (input("Enter key value to search through json file: "))
+        assert (len(acct) > 0), "You didn't enter valid account or entered user-name does not exist. \
+Please try again."
+        # Get json as dictionary.
+        js_diction = get_dict_from_json(acct, num_of_users)
+        # Find seeked value (by key).
+        for i in range(5):
+            res_value = get_val(js_diction, key)
+            print("{} : {}".format(key, res_value))
+    except ValueError:
+        print("You entered wrong value(s). Please, check the input and try again.")
+    except urllib.error.HTTPError:
+        print("not")
+        """
+        for u in js_diction['users'] :
+            print(u['screen_name'])
+            s = u['status']['text']
+            print ('  ',s[:50])
+    #except AssertionError:
+        #print("You didn't enter valid account or entered user-name does not exist. \
+#Please try again.")
+        """
+
+
+if __name__ == "__main__":
+    main()
