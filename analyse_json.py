@@ -26,14 +26,13 @@ def get_dict_from_json(acct, num_of_users):
     if (len(acct) < 1):
         return ''
     url = twurl.augment(TWITTER_URL,
-                        {'screen_name': acct, 'count': '10'})
+                        {'screen_name': acct, 'count': num_of_users})
     connection = urllib.request.urlopen(url, context=ctx)
     try:
         data = connection.read().decode()
     except JSONDecodeError("Invalid json file.", doc, pos):
         print("Invalid json file. Please, check and try again.")
     js = json.loads(data)
-    print(js)
     return js
 
 
@@ -71,35 +70,49 @@ def get_val(diction, key):
     return ''
 
 
+def get_input():
+    try:
+        # Get user-name of account, whose friends info to get.
+        acct = input('Enter Twitter Account: ')
+        assert (len(acct) > 0)
+        # Get number of friends to get info from.
+        num_of_users = int(input("Enter amount of friends, to get \
+information about: "))
+        # Get key parameter, according to which the search will be done.
+        key = (input("Enter key value to search through json file: "))
+        return [acct, num_of_users, key]
+
+    except ValueError:
+        print("You entered wrong value(s). Please, check the input and \
+try again.")
+    except AssertionError:
+        return ''
+
 
 def main():
     try:
-        # Get values from user.
-        acct = input('Enter Twitter Account: ')
-        num_of_users = int(input("Enter amount of friends, which You want to get \
-information about: "))
-        key = (input("Enter key value to search through json file: "))
-        assert (len(acct) > 0), "You didn't enter valid account or entered user-name does not exist. \
-Please try again."
-        # Get json as dictionary.
-        js_diction = get_dict_from_json(acct, num_of_users)
-        # Find seeked value (by key).
-        for i in range(5):
-            res_value = get_val(js_diction, key)
-            print("{} : {}".format(key, res_value))
-    except ValueError:
-        print("You entered wrong value(s). Please, check the input and try again.")
+        while True:
+            # Get values from user.
+            input_values = get_input()
+            # Stop if nothing entered.
+            if not input_values:
+                break
+            # Extract input info.
+            acct = input_values[0]
+            num_of_users = input_values[1]
+            key = input_values[2]
+            # Get json as dictionary.
+            js_diction = get_dict_from_json(acct, num_of_users)
+            # Find seeked value (by key) for given number of users.
+            results = set()
+            for _ in range(num_of_users):
+                res_value = get_val(js_diction, key)
+                if res_value:
+                    print("{} : {}".format(key, res_value))
+                    results.update(res_value)
+        return results
     except urllib.error.HTTPError:
-        print("not")
-        """
-        for u in js_diction['users'] :
-            print(u['screen_name'])
-            s = u['status']['text']
-            print ('  ',s[:50])
-    #except AssertionError:
-        #print("You didn't enter valid account or entered user-name does not exist. \
-#Please try again.")
-        """
+        print("HTTP Error. Please try again later.")
 
 
 if __name__ == "__main__":
