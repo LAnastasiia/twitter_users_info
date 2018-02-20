@@ -89,6 +89,9 @@ try again.")
         return ''
 
 
+#def write_to_csv()
+
+
 def main():
     try:
         while True:

@@ -1,0 +1,19 @@
+body {
+    background-color: LightSkyBlue;
+    background-image: url("white_map_light.jpeg");*/
+}
+h3{
+    color: MidnightBlue
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+form{
+    text-align: center;
+}
+
+button{
+    color: "LightSeaGreen"
+}
