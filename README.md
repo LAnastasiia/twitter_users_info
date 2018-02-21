@@ -3,4 +3,4 @@ This project allows You to get information about friends of certain twitter acco
 
 This project consists of two modules: 
 first one - analyse_json.py - returnes any information You seek, if it's accessible from Twitter.
-second one - create_mao_with_users.py - creates an interactive map with user's friends marked on it. To use this map, please checl out this site - LAnastasia.pythonanywhere.com and fill in all fields of the form, then You will be redirected to the interactive map.
+second one - create_map_with_users.py - creates an interactive map with user's friends marked on it. To use this map, please checl out this site - LAnastasia.pythonanywhere.com and fill in all fields of the form, then You will be redirected to the interactive map.
