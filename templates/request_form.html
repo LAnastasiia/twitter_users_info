@@ -14,10 +14,14 @@
         <h3>You can also set prefered number of friends to show and <span style="color:#191970"> key
             parameter </span> to appear in marker's popups.</h3>
         <h1>Enter the user-name:</h1>
-        <form action="https://getbootstrap.com/docs/3.3/components/" method="get">
-            <input name="q" type="text"/>
-            <button class="w3-button" type="submit">Get information</button>
+        <form method="POST">
+            <input name="user-name" type="text"/>
+            <br>
+            <h1>Enter a number of friends to search:</h1>
+            <input name="number" type="text"/>
+            <br>
+            <button class="w3-button" type="submit">Get map</button>
         </form>
-
+        <img src="map_icon.png">
     </body>
 </html>

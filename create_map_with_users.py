@@ -1,3 +1,4 @@
+# File: create_map.py
 import folium
 import analyse_json
 from geopy.geocoders import ArcGIS
@@ -7,12 +8,9 @@ from geopy.exc import GeocoderTimedOut
 def get_coordinates(adress):
     """
     (str) -> (list)
-
     This function finds lattitude and longitude of given address using
     geocoder.
-
     Precondition: the address must be appropriate, so it can be found on map.
-
     >>>get_coordinates('Mountain View, CA')
     [37.3860517, -122.0838511]
     >>>get_coordinates('Russell Winkelaar's flat, Toronto, Ontario, Canada)
@@ -37,6 +35,12 @@ def get_coordinates(adress):
 
 
 def collect_info(acct, num_of_users):
+    """
+    (str, int) -> (dict)
+    This function processes information about user's friends, formates it in
+    appropriate way (so that it it can be represented in html page properly)
+    and returnes a dict, made of coordinates-keys and info-values.
+    """
     # Get json file as dict, using analyse_json module.
     diction = analyse_json.get_dict_from_json(acct, num_of_users)
     # Create list of screen_names, formated properly for html.
@@ -67,22 +71,27 @@ def create_map(map_dict):
     tw_map = folium.Map(location=[49.839683, 24.029717],
                        tiles='openstreetmap',
                        zoom_start=10)
-    marker_cluster = folium.FeatureGroup().add_to(tw_map)
+    friends_markers = folium.FeatureGroup().add_to(tw_map)
 
     for user in map_dict:
         folium.Marker(user,
                       popup=map_dict[user],
                       icon=folium.Icon(icon='user',
-                      color='blue')).add_to(marker_cluster)
+                      color='blue')).add_to(friends_markers)
 
-    tw_map.add_child(marker_cluster)
+    tw_map.add_child(friends_markers)
     # Save created map as .html file.
-    tw_map.save("twitter_friends_map.html")
+    tw_map.save("templates/twitter_friends_map.html")
 
 def main():
+    """
+    This function cotrols execution of other functions of this module,
+    calling them with certain arguments.
+    """
+    # Account name.
     acct = input("User-name: ")
+    # Number of friends
     num_of_users = int(input("number: "))
-
     map_dict = collect_info(acct, num_of_users)
     print(map_dict)
     create_map(map_dict)

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS = false; L_NO_TOUCH = false; L_DISABLE_3D = false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="https://rawgit.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <style> #map_c8d53feca5f54d8995d3a7725fe3d3a8 {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_c8d53feca5f54d8995d3a7725fe3d3a8" ></div>
+        
+</body>
+<script>    
+    
+
+            
+                var bounds = null;
+            
+
+            var map_c8d53feca5f54d8995d3a7725fe3d3a8 = L.map(
+                                  'map_c8d53feca5f54d8995d3a7725fe3d3a8',
+                                  {center: [49.839683,24.029717],
+                                  zoom: 10,
+                                  maxBounds: bounds,
+                                  layers: [],
+                                  worldCopyJump: false,
+                                  crs: L.CRS.EPSG3857
+                                 });
+            
+        
+    
+            var tile_layer_82163e9a8d9e4486af1302161ba6b7a7 = L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                {
+  "attribution": null,
+  "detectRetina": false,
+  "maxZoom": 18,
+  "minZoom": 1,
+  "noWrap": false,
+  "subdomains": "abc"
+}
+                ).addTo(map_c8d53feca5f54d8995d3a7725fe3d3a8);
+        
+    
+            var feature_group_ead287151dec48edbfa190814d7d4763 = L.featureGroup(
+                ).addTo(map_c8d53feca5f54d8995d3a7725fe3d3a8);
+        
+    
+
+            var marker_09a5c449b781448b83416a98c6acfd65 = L.marker(
+                [42.35866000000004,-71.05673999999993],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(feature_group_ead287151dec48edbfa190814d7d4763);
+            
+    
+
+                var icon_aef73c76bfb64bd594153c4604d1ff14 = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_09a5c449b781448b83416a98c6acfd65.setIcon(icon_aef73c76bfb64bd594153c4604d1ff14);
+            
+    
+            var popup_bcb208a9eb8440d5b6d9e53fb8e696ca = L.popup({maxWidth: '300'});
+
+            
+                var html_4470a7ec62fe42ffaef9233bce12c193 = $('<div id="html_4470a7ec62fe42ffaef9233bce12c193" style="width: 100.0%; height: 100.0%;">tnessLX--Boston, MA</div>')[0];
+                popup_bcb208a9eb8440d5b6d9e53fb8e696ca.setContent(html_4470a7ec62fe42ffaef9233bce12c193);
+            
+
+            marker_09a5c449b781448b83416a98c6acfd65.bindPopup(popup_bcb208a9eb8440d5b6d9e53fb8e696ca);
+
+            
+        
+    
+
+            var marker_bc0e4048bd7b454c93cb44e6682c4fef = L.marker(
+                [31.80024000000003,-81.60985999999997],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(feature_group_ead287151dec48edbfa190814d7d4763);
+            
+    
+
+                var icon_1b760fdff31b452c81eea314505bda6c = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_bc0e4048bd7b454c93cb44e6682c4fef.setIcon(icon_1b760fdff31b452c81eea314505bda6c);
+            
+    
+            var popup_1ad41666f10249fda339d549c7d710f7 = L.popup({maxWidth: '300'});
+
+            
+                var html_0af0df30f02a41acb2138dc40cb42036 = $('<div id="html_0af0df30f02a41acb2138dc40cb42036" style="width: 100.0%; height: 100.0%;">TannerLund--Tilted Towers </div>')[0];
+                popup_1ad41666f10249fda339d549c7d710f7.setContent(html_0af0df30f02a41acb2138dc40cb42036);
+            
+
+            marker_bc0e4048bd7b454c93cb44e6682c4fef.bindPopup(popup_1ad41666f10249fda339d549c7d710f7);
+
+            
+        
+    
+
+            var marker_2d8fb6f0e81e4d3d8d6bbe6b5df99187 = L.marker(
+                [26.12367000000006,-80.14355999999998],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(feature_group_ead287151dec48edbfa190814d7d4763);
+            
+    
+
+                var icon_cb937177a142400b8d50eed6c93fd9f9 = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_2d8fb6f0e81e4d3d8d6bbe6b5df99187.setIcon(icon_cb937177a142400b8d50eed6c93fd9f9);
+            
+    
+            var popup_e55a80261a0a4a198c31a599ddb628a4 = L.popup({maxWidth: '300'});
+
+            
+                var html_3a762b61793a474886d823c749152a67 = $('<div id="html_3a762b61793a474886d823c749152a67" style="width: 100.0%; height: 100.0%;">ryusietai--fort lauderdale</div>')[0];
+                popup_e55a80261a0a4a198c31a599ddb628a4.setContent(html_3a762b61793a474886d823c749152a67);
+            
+
+            marker_2d8fb6f0e81e4d3d8d6bbe6b5df99187.bindPopup(popup_e55a80261a0a4a198c31a599ddb628a4);
+
+            
+        
+    
+
+            var marker_60f9cd703be04bf79b53801f51e4622c = L.marker(
+                [39.61334835300005,-74.72856499999995],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(feature_group_ead287151dec48edbfa190814d7d4763);
+            
+    
+
+                var icon_5660655c0512453682466a645024580b = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_60f9cd703be04bf79b53801f51e4622c.setIcon(icon_5660655c0512453682466a645024580b);
+            
+    
+            var popup_4072a0f21a214d5182de211f335dc2c5 = L.popup({maxWidth: '300'});
+
+            
+                var html_306ccd49c55b47fe9eec7eeacd7da548 = $('<div id="html_306ccd49c55b47fe9eec7eeacd7da548" style="width: 100.0%; height: 100.0%;">garyzone--New Jersey, USA</div>')[0];
+                popup_4072a0f21a214d5182de211f335dc2c5.setContent(html_306ccd49c55b47fe9eec7eeacd7da548);
+            
+
+            marker_60f9cd703be04bf79b53801f51e4622c.bindPopup(popup_4072a0f21a214d5182de211f335dc2c5);
+
+            
+        
+    
+
+            var marker_8ea5793e72a845849df788890202762d = L.marker(
+                [41.49224000000004,-71.31123999999994],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(feature_group_ead287151dec48edbfa190814d7d4763);
+            
+    
+
+                var icon_e8fa517b5e5d42489a8da17c081706ec = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_8ea5793e72a845849df788890202762d.setIcon(icon_e8fa517b5e5d42489a8da17c081706ec);
+            
+    
+            var popup_a2175f7461184606b1d5f764a8e1d334 = L.popup({maxWidth: '300'});
+
+            
+                var html_32aa197b8b5745b999f1dc90c279a482 = $('<div id="html_32aa197b8b5745b999f1dc90c279a482" style="width: 100.0%; height: 100.0%;">ansontm--Newport, RI</div>')[0];
+                popup_a2175f7461184606b1d5f764a8e1d334.setContent(html_32aa197b8b5745b999f1dc90c279a482);
+            
+
+            marker_8ea5793e72a845849df788890202762d.bindPopup(popup_a2175f7461184606b1d5f764a8e1d334);
+
+            
+        
+</script>
